@@ -1,0 +1,52 @@
+.taskListContainer {
+    width: 100%;
+    max-width: 400px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.taskListContainer h1 {
+    text-align: center;
+    font-size: 20px;
+    color: #333;
+}
+
+.taskList {
+    list-style: none;
+    padding: 0;
+    margin-top: 15px;
+}
+
+.taskItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: white;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.taskText {
+    font-size: 16px;
+    color: #333;
+    word-break: break-word;
+}
+
+.deleteButton {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.deleteButton:hover {
+    background-color: #cc0000;
+}
