@@ -1,0 +1,90 @@
+.container {
+    display: flex;
+    gap: 20px; /* Space between sidebar and tables */
+    padding: 20px;
+}
+
+.sidebar {
+    transition: transform 0.3s ease-in-out;
+    width: 350px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    background: #345774;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+
+/* Hide sidebar when isVisible is false */
+.hide {
+    transform: translateX(-100%);
+}
+
+/* Show sidebar when isVisible is true */
+.show {
+    transform: translateX(0);
+}
+
+
+.tablesContainer {
+    flex: 3; /* Take    s more space */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-left: 500px;
+}
+
+.tableWrapper {
+    flex: 1; /* Each table takes equal space */
+    width: 70%;
+}
+
+.button {
+    background-color: #007bff;  /* Blue color */
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    margin-top: 10px;
+}
+
+.button:hover {
+    background-color: #0056b3;  /* Darker blue */
+    transform: scale(1.05);
+}
+
+.button:active {
+    background-color: #004494; 
+    transform: scale(0.98);
+}
+
+.button:focus {
+    outline: 2px solid #0056b3;
+}
+
+/* If you want to center the button inside tableWrapper */
+.tableWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .tablesContainer {
+        flex-direction: column;
+    }
+
+    .tableWrapper {
+        width: 100%;
+    }
+}

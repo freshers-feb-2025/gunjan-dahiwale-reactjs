@@ -1,27 +1,19 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Table.module.css';
 
-const Table = () => {
+const Table = ({data}) => {
 
-  const [data, setData] = useState('');
+  const [currPage, setCurrPage ] = useState(1);
+  
+  const rows = 5;
+  const total = Math.ceil(data.length/rows);
+  const lastRowIndex = currPage*rows;
+  const firstRowIndex = lastRowIndex - rows;
+  const currRows = data.slice(firstRowIndex, lastRowIndex);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch('https://dummyjson.com/users?limit=100');
-        if (!res.ok) throw new Error("Something went wrong");
-
-        const response = await res.json();
-        setData(response.users);
-        console.log(response);
-        
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    fetchData();
-  }, []);
+  const paginate = (no) => {
+    setCurrPage(no);
+  }
 
   return (
     <div className={styles.tableContainer}>
@@ -38,7 +30,7 @@ const Table = () => {
         </thead>
         <tbody>
           {data.length > 0 ? (
-            data.map((user) => (
+            currRows.map((user) => (
               <tr className={styles.tableRow}>
                 <td className={styles.td}>{user.id}</td>
                 <td className={styles.td}>{user.firstName}</td>
@@ -49,11 +41,24 @@ const Table = () => {
               </tr>
             ))
           ) : (<tr>
-                  <td colSpan="6" className={styles.td}>Loading...</td>
+                  <td colSpan="6" className={styles.td}>No data found</td>
               </tr>)
             }
         </tbody>
       </table>
+      <div className={styles.pagination}>
+        <button onClick={() => paginate(currPage-1)} disabled={currPage === 1} className={styles.pageButton}>Prev</button>
+        {[...Array(total).keys()].map((num) => (
+                    <button 
+                        key={num + 1} 
+                        onClick={() => paginate(num + 1)} 
+                        className={`${styles.pageButton} ${currPage === num + 1 ? styles.active : ''}`}
+                    >
+                        {num + 1}
+                    </button>
+                ))}
+        <button onClick={() => paginate(currPage+1)} disabled={currPage === total} className={styles.pageButton}>Next</button>
+      </div>
     </div>
   );
 };

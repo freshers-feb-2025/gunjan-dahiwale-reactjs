@@ -7,6 +7,7 @@ import Dashboard from './components/Dashboard';
 import ProtectedRoute from './context/ProtectedRoute';
 import { AuthProvider } from './context/AuthContext';
 import Table from './components/Table';
+import Index from './components/Index';
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
         <Router>
           <Routes>
             <Route  path='/login' element={<RegistrationForm/>}/>
-            <Route path = '/table' element={<Table/>}/>
+            <Route path = '/' element={<Index/>}/>
             <Route path='/' element={<ProtectedRoute><Dashboard/></ProtectedRoute>}/>
           </Routes>
         </Router>
